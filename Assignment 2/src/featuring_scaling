@@ -1,0 +1,23 @@
+import pandas as pd
+import numpy as np
+from sklearn.preprocessing import MinMaxScaler, MaxAbsScaler, StandardScaler, Normalizer
+df = pd.read_csv("data/cleaned_dataset.csv")
+numerical_cols = df.select_dtypes(include=np.number).columns
+minmax_scaler = MinMaxScaler()
+df_minmax = df.copy()
+df_minmax[numerical_cols] = minmax_scaler.fit_transform(df[numerical_cols])
+normalizer = Normalizer()
+df_normalized = df.copy()
+df_normalized[numerical_cols] = normalizer.fit_transform(df[numerical_cols])
+standard_scaler = StandardScaler()
+df_standardized = df.copy()
+df_standardized[numerical_cols] = standard_scaler.fit_transform(df[numerical_cols])
+standard_scaler = StandardScaler()
+df_standardized = df.copy()
+df_standardized[numerical_cols] = standard_scaler.fit_transform(df[numerical_cols])
+df_minmax.to_csv("data/minmax_scaled.csv", index=False)
+
+df_normalized.to_csv("data/normalized.csv", index=False)
+df_standardized.to_csv("data/standardized.csv", index=False)
+
+print("Feature scaling completed successfully")
