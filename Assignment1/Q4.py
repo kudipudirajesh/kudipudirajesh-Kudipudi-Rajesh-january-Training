@@ -1,5 +1,5 @@
 def remove_even(numbers):
-    for n in list(numbers): # Iterate over a copy of the list
+    for n in list(numbers): 
         if n % 2 == 0:
             numbers.remove(n)
     return numbers
