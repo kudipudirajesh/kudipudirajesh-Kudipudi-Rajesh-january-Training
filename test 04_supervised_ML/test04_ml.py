@@ -41,3 +41,53 @@ df = pd.get_dummies(df, drop_first=True)
 scaler = StandardScaler()
 X_scaled = scaler.fit_transform(X)
 
+X = df.drop("target", axis=1)
+y = df["target"]
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+lr = LinearRegression()
+lr.fit(X_train, y_train)
+y_pred_lr = lr.predict(X_test)
+
+print("MSE:", mean_squared_error(y_test, y_pred_lr))
+print("R2:", r2_score(y_test, y_pred_lr))
+
+dt = DecisionTreeRegressor(random_state=42)
+dt.fit(X_train, y_train)
+y_pred_dt = dt.predict(X_test)
+
+print("R2:", r2_score(y_test, y_pred_dt))
+
+rf = RandomForestRegressor(n_estimators=100, random_state=42)
+rf.fit(X_train, y_train)
+y_pred_rf = rf.predict(X_test)
+
+print("R2:", r2_score(y_test, y_pred_rf))
+
+knn = KNeighborsRegressor(n_neighbors=5)
+knn.fit(X_train, y_train)
+y_pred_knn = knn.predict(X_test)
+
+print("R2:", r2_score(y_test, y_pred_knn))
+
+svm = SVR()
+svm.fit(X_train, y_train)
+y_pred_svm = svm.predict(X_test)
+
+print("R2:", r2_score(y_test, y_pred_svm))
+
+results = pd.DataFrame({
+    "Model": ["Linear", "Decision Tree", "Random Forest", "KNN", "SVM"],
+    "R2 Score": [
+        r2_score(y_test, y_pred_lr),
+        r2_score(y_test, y_pred_dt),
+        r2_score(y_test, y_pred_rf),
+        r2_score(y_test, y_pred_knn),
+        r2_score(y_test, y_pred_svm)
+    ]
+})
+
+print(results)
