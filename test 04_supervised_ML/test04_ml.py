@@ -17,7 +17,7 @@ df = pd.read_csv("House Price India.csv")
 print(df.head())
 print(df.info())
 
-print(df.isnull().sum())
+print(df.isnull().sum())  
 
 # Numerical columns
 df.fillna(df.mean(numeric_only=True), inplace=True)
