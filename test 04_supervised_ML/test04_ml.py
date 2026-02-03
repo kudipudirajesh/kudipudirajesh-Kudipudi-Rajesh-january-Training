@@ -13,7 +13,7 @@ from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
 from sklearn.neighbors import KNeighborsClassifier, KNeighborsRegressor
 from sklearn.svm import SVC, SVR     
 
-df = pd.read_csv("House Price India.csv")
+df = pd.read_csv("House Price India.csv")     
 print(df.head())
 print(df.info())
 
