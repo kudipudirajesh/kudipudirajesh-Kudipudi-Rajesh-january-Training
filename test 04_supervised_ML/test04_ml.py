@@ -91,3 +91,37 @@ results = pd.DataFrame({
 })
 
 print(results)
+
+# Remove ID-like columns
+df.drop(columns=['Id'], inplace=True)
+
+# Check correlation
+plt.figure(figsize=(10,6))
+sns.heatmap(df.corr(), annot=False, cmap='coolwarm')
+plt.show()
+
+df.skew()
+
+df['SalePrice'] = np.log1p(df['SalePrice'])
+
+df['feature'] = np.sqrt(df['feature'])
+
+from sklearn.model_selection import train_test_split
+
+X = df.drop('target', axis=1)
+y = df['target']
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+from sklearn.preprocessing import StandardScaler
+
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
+
+from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
+import numpy as np
+
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
