@@ -11,7 +11,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.tree import DecisionTreeClassifier, DecisionTreeRegressor
 from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
 from sklearn.neighbors import KNeighborsClassifier, KNeighborsRegressor
-from sklearn.svm import SVC, SVR
+from sklearn.svm import SVC, SVR     
 
 df = pd.read_csv("House Price India.csv")
 print(df.head())
