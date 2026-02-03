@@ -39,7 +39,7 @@ df['gender'] = le.fit_transform(df['gender'])
 df = pd.get_dummies(df, drop_first=True)
 
 scaler = StandardScaler()
-X_scaled = scaler.fit_transform(X)
+X_scaled = scaler.fit_transform()
 
 X = df.drop("target", axis=1)
 y = df["target"]
